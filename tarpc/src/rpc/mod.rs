@@ -28,7 +28,7 @@ pub mod client;
 pub mod context;
 pub mod server;
 pub mod transport;
-pub(crate) mod util;
+pub mod util;
 
 pub use crate::{client::Client, server::Server, trace, transport::sealed::Transport};
 

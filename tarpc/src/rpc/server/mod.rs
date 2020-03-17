@@ -502,8 +502,10 @@ where
 #[pin_project]
 #[derive(Debug)]
 pub struct RequestHandler<F, R> {
+
+    /// todo
     #[pin]
-    resp: Abortable<Resp<F, R>>,
+    pub resp: Abortable<Resp<F, R>>,
 }
 
 impl<F, R> Future for RequestHandler<F, R>
@@ -518,25 +520,47 @@ where
     }
 }
 
+/// A response for a client request.
 #[pin_project]
 #[derive(Debug)]
-struct Resp<F, R> {
-    state: RespState,
-    request_id: u64,
-    ctx: context::Context,
-    deadline: SystemTime,
+pub struct Resp<F, R> {
+
+    /// todo
+    pub state: RespState,
+
+    /// todo
+    pub request_id: u64,
+
+    /// todo
+    pub ctx: context::Context,
+
+    /// todo
+    pub deadline: SystemTime,
+
+    /// todo
     #[pin]
-    f: Timeout<F>,
-    response: Option<Response<R>>,
+    pub f: Timeout<F>,
+
+    /// todo
+    pub response: Option<Response<R>>,
+
+    /// todo
     #[pin]
-    response_tx: mpsc::Sender<(context::Context, Response<R>)>,
+    pub response_tx: mpsc::Sender<(context::Context, Response<R>)>,
 }
 
+/// State of in-flight response.
 #[derive(Debug)]
 #[allow(clippy::enum_variant_names)]
-enum RespState {
+pub enum RespState {
+
+    /// todo
     PollResp,
+
+    /// todo
     PollReady,
+
+    /// todo
     PollFlush,
 }
 
